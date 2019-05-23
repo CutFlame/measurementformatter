@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>MeasurementFormatter.com - Easy Skeezy Unit Formatting for Swift and Objective-C</title>
+    <title>MeasurementFormatter.com - Quick Unit Formatting for Swift</title>
     <link rel="stylesheet" href="styles/dist/styles.css" media="screen">
     <script src="https://use.typekit.net/leg5xtm.js"></script>
     <script>try{Typekit.load({ async: true });}catch(e){}</script>
@@ -20,7 +20,7 @@
   <div class="container">
     <header>
       <h1>MeasurementFormatter<span class="secondary">.com</span></h1>
-      <h2>Easy Skeezy Unit Formatting for Swift and Objective-C</h2>
+      <h2>Quick Unit Formatting for Swift</h2>
     </header>
   </div>
 
