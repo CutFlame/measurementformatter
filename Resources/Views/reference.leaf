@@ -1,0 +1,33 @@
+
+<div class="reference toggle">
+    <p>These have all been formatted using a <code>Measurement</code> instance with the value of 2</p>
+
+    <table class="reference-table table--full-width">
+        <tr>
+            <th>Unit Static Property</th>
+            <th>Formatted Short</th>
+            <th>Formatted Medium</th>
+            <th>Formatted Long</th>
+        </tr>
+#for(dimension in dimensions) {
+        <tr class="separator">
+            <td colspan="4">#(dimension.identifier) - <i>BaseUnit: #(dimension.baseUnit)</i></td>
+        </tr>
+    #for(unit in dimension.units) {
+        <tr>
+            <td><code>.#(unit.identifier)</code></td>
+            <td>#(unit.shortFormat)</td>
+            <td>#(unit.mediumFormat)</td>
+            <td>#(unit.longFormat)</td>
+        </tr>
+    }
+}
+        <tfoot>
+            <tr>
+                <td colspan="4">
+                For the full reference of available Units, see <a href="https://developer.apple.com/documentation/foundation/dimension" target="_blank">Dimension - Foundation | Apple Developer Documentation</a>.
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+</div> <!-- reference -->

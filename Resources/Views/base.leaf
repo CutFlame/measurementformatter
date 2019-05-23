@@ -1,10 +1,39 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>#get(title)</title>
-	<link rel="stylesheet" href="/styles/app.css">
+    <meta charset="utf-8">
+    <title>MeasurementFormatter.com - Easy Skeezy Unit Formatting for Swift and Objective-C</title>
+    <link rel="stylesheet" href="styles/dist/styles.css" media="screen">
+    <script src="https://use.typekit.net/leg5xtm.js"></script>
+    <script>try{Typekit.load({ async: true });}catch(e){}</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.1/jquery.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/languages/swift.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+    <script src="scripts/app.js"></script>
 </head>
 <body>
-    #get(body)
+
+  <div class="container">
+    <header>
+      <h1>MeasurementFormatter<span class="secondary">.com</span></h1>
+      <h2>Easy Skeezy Unit Formatting for Swift and Objective-C</h2>
+    </header>
+  </div>
+
+  <div class="container content">
+    #get(content)
+  </div>
+
+  <footer>
+    <p>
+      Created by <a href="https://github.com/CutFlame">Michael Holt</a>.
+      Inspired by <a href="https://nsdateformatter.com">NSDateFormatter.com</a>.
+    </p>
+  </footer>
+
 </body>
 </html>
