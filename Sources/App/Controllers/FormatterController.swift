@@ -1,5 +1,5 @@
-import Vapor
 import Leaf
+import Vapor
 
 class FormatterController {
 
@@ -28,7 +28,7 @@ class FormatterController {
         return "short"
     }
 
-    struct FormatResult : Content {
+    struct FormatResult: Content {
         let status: String
         let result: String
     }
@@ -55,7 +55,7 @@ class FormatterController {
         formatter.unitOptions = unitOptions
         formatter.unitStyle = unitStyle
 
-        let result:String
+        let result: String
         if let value = value {
             let measurement = Measurement(value: value, unit: dimension)
             result = formatter.string(from: measurement)

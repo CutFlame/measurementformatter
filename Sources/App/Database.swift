@@ -12,7 +12,7 @@ class Database {
 
     fileprivate init() {}
 
-    let unitTypes:[Unit.Type] = [
+    let unitTypes: [Unit.Type] = [
         UnitAcceleration.self,
         UnitAngle.self,
         UnitArea.self,
@@ -36,8 +36,8 @@ class Database {
         UnitVolume.self,
     ]
 
-    lazy var unitTypeIdentifiers:[String: Unit.Type] = {
-        var dict = [String:Unit.Type]()
+    lazy var unitTypeIdentifiers: [String: Unit.Type] = {
+        var dict = [String: Unit.Type]()
         for unitType in self.unitTypes {
             let identifier = "\(unitType)"
             dict[identifier] = unitType
@@ -45,7 +45,7 @@ class Database {
         return dict
     }()
 
-    lazy var dimensionIdentifiers:[String: Dimension] = {
+    lazy var dimensionIdentifiers: [String: Dimension] = {
         var dict = [String: Dimension]()
         for (unitType, selectors) in self.all {
             for selector in selectors {
@@ -71,12 +71,12 @@ class Database {
         MeasurementFormatter.UnitStyle.long,
     ]
 
-    let unitOptionsIdentifiers:[String:MeasurementFormatter.UnitOptions] = [
+    let unitOptionsIdentifiers: [String: MeasurementFormatter.UnitOptions] = [
         "providedUnit": MeasurementFormatter.UnitOptions.providedUnit,
         "naturalScale": MeasurementFormatter.UnitOptions.naturalScale,
     ]
 
-    let unitStyleIdentifiers:[String:MeasurementFormatter.UnitStyle] = [
+    let unitStyleIdentifiers: [String: MeasurementFormatter.UnitStyle] = [
         "short": MeasurementFormatter.UnitStyle.short,
         "medium": MeasurementFormatter.UnitStyle.medium,
         "long": MeasurementFormatter.UnitStyle.long,
@@ -288,7 +288,7 @@ class Database {
         #selector(getter: UnitVolume.teaspoons),
     ]
 
-    lazy var all:[(Dimension.Type,[Selector])] = [
+    lazy var all: [(Dimension.Type, [Selector])] = [
         (UnitAcceleration.self, accelerations),
         (UnitAngle.self, angles),
         (UnitArea.self, areas),
@@ -337,8 +337,8 @@ class Database {
             })
         }
     }()
-    
-    static func createUnit<T:Dimension>(_ type: T.Type, _ selector:Selector) -> T {
+
+    static func createUnit<T: Dimension>(_ type: T.Type, _ selector: Selector) -> T {
         guard let result = type.perform(selector)?.takeUnretainedValue() as? T else {
             fatalError("Could not create unit type: \(T.self) using selector: \(selector)")
         }
