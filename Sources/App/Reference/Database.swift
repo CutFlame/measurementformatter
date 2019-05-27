@@ -40,15 +40,6 @@ class Database {
 
     let defaultLocaleIdentifier = "en_US_POSIX"
 
-    lazy var dimensionsReference: [DimensionOption] = {
-        return Dimensions.all.map { (arg) -> DimensionOption in
-            let (type, selectors) = arg
-            let baseUnit = MeasurementFormatters.medium.string(from: type.baseUnit())
-            let units = selectors.map { "\($0)" }.compactMap(createUnitReference)
-            return DimensionOption(identifier: "\(type)", baseUnit: baseUnit, units: units)
-        }
-    }()
-
     private func createUnitReference(name: String) -> UnitReference? {
         guard let unit = self.dimensionIdentifiers[name] else { return nil }
         let measurement = Measurement(value: 2, unit: unit)
@@ -59,6 +50,17 @@ class Database {
             longFormat: MeasurementFormatters.long.string(from: measurement)
         )
     }
+
+    #if os(macOS)
+    
+    lazy var dimensionsReference: [DimensionOption] = {
+        return Dimensions.all.map { (arg) -> DimensionOption in
+            let (type, selectors) = arg
+            let baseUnit = MeasurementFormatters.medium.string(from: type.baseUnit())
+            let units = selectors.map { "\($0)" }.compactMap(createUnitReference)
+            return DimensionOption(identifier: "\(type)", baseUnit: baseUnit, units: units)
+        }
+    }()
 
     lazy var dimensionIdentifiers: [String: Dimension] = {
         var dict = [String: Dimension]()
@@ -82,4 +84,30 @@ class Database {
         return result
     }
 
+    #else
+
+    lazy var dimensionsReference: [DimensionOption] = {
+        return Dimensions.all.map { (type, unitDict) -> DimensionOption in
+            let baseUnit = MeasurementFormatters.medium.string(from: type.baseUnit())
+            let units = unitDict.map { "\($0.0)" }.compactMap(createUnitReference)
+            return DimensionOption(identifier: "\(type)", baseUnit: baseUnit, units: units)
+        }
+    }()
+
+    lazy var dimensionIdentifiers:[String: Dimension] = {
+        var dict = [String: Dimension]()
+        for (unitType, unitDict) in Dimensions.all {
+            for pair in unitDict {
+                let unitIdentifier = "\(unitType)"
+                let name = "\(pair.key)"
+                let fullName = "\(unitIdentifier).\(name)"
+                let unit = pair.value
+                dict[name] = unit
+                dict[fullName] = unit
+            }
+        }
+        return dict
+    }()
+
+    #endif
 }

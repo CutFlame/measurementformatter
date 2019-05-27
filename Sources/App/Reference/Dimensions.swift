@@ -34,6 +34,8 @@ struct Dimensions {
         UnitVolume.self,
     ]
 
+    #if os(macOS)
+
     static let all: [(Dimension.Type, [Selector])] = [
         (UnitAcceleration.self, Dimensions.accelerations),
         (UnitAngle.self, Dimensions.angles),
@@ -263,4 +265,237 @@ struct Dimensions {
         #selector(getter: UnitVolume.tablespoons),
         #selector(getter: UnitVolume.teaspoons),
     ]
+    #else
+
+    static var all:[(Dimension.Type,[String: Dimension])] = [
+        (UnitAcceleration.self, accelerations),
+        (UnitAngle.self, angles),
+        (UnitArea.self, areas),
+        (UnitConcentrationMass.self, concentrationMasses),
+        (UnitDispersion.self, dispersions),
+        (UnitDuration.self, durations),
+        (UnitElectricCharge.self, electricCharges),
+        (UnitElectricCurrent.self, electricCurrents),
+        (UnitElectricPotentialDifference.self, electricPotentialDifferences),
+        (UnitElectricResistance.self, electricResistances),
+        (UnitEnergy.self, energies),
+        (UnitFrequency.self, frequencies),
+        (UnitFuelEfficiency.self, fuelEfficiencies),
+        (UnitIlluminance.self, illuminances),
+        (UnitLength.self, lengths),
+        (UnitMass.self, masses),
+        (UnitPower.self, powers),
+        (UnitPressure.self, pressures),
+        (UnitSpeed.self, speeds),
+        (UnitTemperature.self, tempuratures),
+        (UnitVolume.self, volumes),
+    ]
+
+    static let accelerations = [
+        "gravity":UnitAcceleration.gravity,
+        "metersPerSecondSquared":UnitAcceleration.metersPerSecondSquared,
+    ]
+    static let angles = [
+        "arcMinutes":UnitAngle.arcMinutes,
+        "arcSeconds":UnitAngle.arcSeconds,
+        "degrees":UnitAngle.degrees,
+        "gradians":UnitAngle.gradians,
+        "radians":UnitAngle.radians,
+        "revolutions":UnitAngle.revolutions,
+    ]
+    static let areas = [
+        "acres":UnitArea.acres,
+        "ares":UnitArea.ares,
+        "hectares":UnitArea.hectares,
+        "squareCentimeters":UnitArea.squareCentimeters,
+        "squareFeet":UnitArea.squareFeet,
+        "squareInches":UnitArea.squareInches,
+        "squareKilometers":UnitArea.squareKilometers,
+        "squareMegameters":UnitArea.squareMegameters,
+        "squareMeters":UnitArea.squareMeters,
+        "squareMicrometers":UnitArea.squareMicrometers,
+        "squareMiles":UnitArea.squareMiles,
+        "squareMillimeters":UnitArea.squareMillimeters,
+        "squareNanometers":UnitArea.squareNanometers,
+        "squareYards":UnitArea.squareYards,
+    ]
+    static let concentrationMasses = [
+        "gramsPerLiter":UnitConcentrationMass.gramsPerLiter,
+        "milligramsPerDeciliter":UnitConcentrationMass.milligramsPerDeciliter,
+    ]
+    static let dispersions = [
+        "partsPerMillion":UnitDispersion.partsPerMillion,
+    ]
+    static let durations = [
+        "hours":UnitDuration.hours,
+        "minutes":UnitDuration.minutes,
+        "seconds":UnitDuration.seconds,
+    ]
+    static let electricCharges = [
+        "ampereHours":UnitElectricCharge.ampereHours,
+        "coulombs":UnitElectricCharge.coulombs,
+        "kiloampereHours":UnitElectricCharge.kiloampereHours,
+        "megaampereHours":UnitElectricCharge.megaampereHours,
+        "microampereHours":UnitElectricCharge.microampereHours,
+        "milliampereHours":UnitElectricCharge.milliampereHours,
+    ]
+    static let electricCurrents = [
+        "amperes":UnitElectricCurrent.amperes,
+        "kiloamperes":UnitElectricCurrent.kiloamperes,
+        "megaamperes":UnitElectricCurrent.megaamperes,
+        "microamperes":UnitElectricCurrent.microamperes,
+        "milliamperes":UnitElectricCurrent.milliamperes,
+    ]
+    static let electricPotentialDifferences = [
+        "kilovolts":UnitElectricPotentialDifference.kilovolts,
+        "megavolts":UnitElectricPotentialDifference.megavolts,
+        "microvolts":UnitElectricPotentialDifference.microvolts,
+        "millivolts":UnitElectricPotentialDifference.millivolts,
+        "volts":UnitElectricPotentialDifference.volts,
+    ]
+    static let electricResistances = [
+        "kiloohms":UnitElectricResistance.kiloohms,
+        "megaohms":UnitElectricResistance.megaohms,
+        "microohms":UnitElectricResistance.microohms,
+        "milliohms":UnitElectricResistance.milliohms,
+        "ohms":UnitElectricResistance.ohms,
+    ]
+    static let energies = [
+        "calories":UnitEnergy.calories,
+        "joules":UnitEnergy.joules,
+        "kilocalories":UnitEnergy.kilocalories,
+        "kilojoules":UnitEnergy.kilojoules,
+        "kilowattHours":UnitEnergy.kilowattHours,
+    ]
+    static let frequencies = [
+        "gigahertz":UnitFrequency.gigahertz,
+        "hertz":UnitFrequency.hertz,
+        "kilohertz":UnitFrequency.kilohertz,
+        "megahertz":UnitFrequency.megahertz,
+        "microhertz":UnitFrequency.microhertz,
+        "millihertz":UnitFrequency.millihertz,
+        "nanohertz":UnitFrequency.nanohertz,
+        "terahertz":UnitFrequency.terahertz,
+    ]
+    static let fuelEfficiencies = [
+        "litersPer100Kilometers":UnitFuelEfficiency.litersPer100Kilometers,
+        "milesPerGallon":UnitFuelEfficiency.milesPerGallon,
+        "milesPerImperialGallon":UnitFuelEfficiency.milesPerImperialGallon,
+    ]
+    static let illuminances = [
+        "lux":UnitIlluminance.lux,
+    ]
+    static let lengths = [
+        "astronomicalUnits":UnitLength.astronomicalUnits,
+        "centimeters":UnitLength.centimeters,
+        "decameters":UnitLength.decameters,
+        "decimeters":UnitLength.decimeters,
+        "fathoms":UnitLength.fathoms,
+        "feet":UnitLength.feet,
+        "furlongs":UnitLength.furlongs,
+        "hectometers":UnitLength.hectometers,
+        "inches":UnitLength.inches,
+        "kilometers":UnitLength.kilometers,
+        "lightyears":UnitLength.lightyears,
+        "megameters":UnitLength.megameters,
+        "meters":UnitLength.meters,
+        "micrometers":UnitLength.micrometers,
+        "miles":UnitLength.miles,
+        "millimeters":UnitLength.millimeters,
+        "nanometers":UnitLength.nanometers,
+        "nauticalMiles":UnitLength.nauticalMiles,
+        "parsecs":UnitLength.parsecs,
+        "picometers":UnitLength.picometers,
+        "scandinavianMiles":UnitLength.scandinavianMiles,
+        "yards":UnitLength.yards,
+    ]
+    static let masses = [
+        "carats":UnitMass.carats,
+        "centigrams":UnitMass.centigrams,
+        "decigrams":UnitMass.decigrams,
+        "grams":UnitMass.grams,
+        "kilograms":UnitMass.kilograms,
+        "metricTons":UnitMass.metricTons,
+        "micrograms":UnitMass.micrograms,
+        "milligrams":UnitMass.milligrams,
+        "nanograms":UnitMass.nanograms,
+        "ounces":UnitMass.ounces,
+        "ouncesTroy":UnitMass.ouncesTroy,
+        "picograms":UnitMass.picograms,
+        "pounds":UnitMass.pounds,
+        "shortTons":UnitMass.shortTons,
+        "slugs":UnitMass.slugs,
+        "stones":UnitMass.stones,
+    ]
+    static let powers = [
+        "femtowatts":UnitPower.femtowatts,
+        "gigawatts":UnitPower.gigawatts,
+        "horsepower":UnitPower.horsepower,
+        "kilowatts":UnitPower.kilowatts,
+        "megawatts":UnitPower.megawatts,
+        "microwatts":UnitPower.microwatts,
+        "milliwatts":UnitPower.milliwatts,
+        "nanowatts":UnitPower.nanowatts,
+        "picowatts":UnitPower.picowatts,
+        "terawatts":UnitPower.terawatts,
+        "watts":UnitPower.watts,
+    ]
+    static let pressures = [
+        "bars":UnitPressure.bars,
+        "gigapascals":UnitPressure.gigapascals,
+        "hectopascals":UnitPressure.hectopascals,
+        "inchesOfMercury":UnitPressure.inchesOfMercury,
+        "kilopascals":UnitPressure.kilopascals,
+        "megapascals":UnitPressure.megapascals,
+        "millibars":UnitPressure.millibars,
+        "millimetersOfMercury":UnitPressure.millimetersOfMercury,
+        "newtonsPerMetersSquared":UnitPressure.newtonsPerMetersSquared,
+        "poundsForcePerSquareInch":UnitPressure.poundsForcePerSquareInch,
+    ]
+    static let speeds = [
+        "kilometersPerHour":UnitSpeed.kilometersPerHour,
+        "knots":UnitSpeed.knots,
+        "metersPerSecond":UnitSpeed.metersPerSecond,
+        "milesPerHour":UnitSpeed.milesPerHour,
+    ]
+    static let tempuratures = [
+        "celsius":UnitTemperature.celsius,
+        "fahrenheit":UnitTemperature.fahrenheit,
+        "kelvin":UnitTemperature.kelvin,
+    ]
+    static let volumes = [
+        "acreFeet":UnitVolume.acreFeet,
+        "bushels":UnitVolume.bushels,
+        "centiliters":UnitVolume.centiliters,
+        "cubicCentimeters":UnitVolume.cubicCentimeters,
+        "cubicDecimeters":UnitVolume.cubicDecimeters,
+        "cubicFeet":UnitVolume.cubicFeet,
+        "cubicInches":UnitVolume.cubicInches,
+        "cubicKilometers":UnitVolume.cubicKilometers,
+        "cubicMeters":UnitVolume.cubicMeters,
+        "cubicMiles":UnitVolume.cubicMiles,
+        "cubicMillimeters":UnitVolume.cubicMillimeters,
+        "cubicYards":UnitVolume.cubicYards,
+        "cups":UnitVolume.cups,
+        "deciliters":UnitVolume.deciliters,
+        "fluidOunces":UnitVolume.fluidOunces,
+        "gallons":UnitVolume.gallons,
+        "imperialFluidOunces":UnitVolume.imperialFluidOunces,
+        "imperialGallons":UnitVolume.imperialGallons,
+        "imperialPints":UnitVolume.imperialPints,
+        "imperialQuarts":UnitVolume.imperialQuarts,
+        "imperialTablespoons":UnitVolume.imperialTablespoons,
+        "imperialTeaspoons":UnitVolume.imperialTeaspoons,
+        "kiloliters":UnitVolume.kiloliters,
+        "liters":UnitVolume.liters,
+        "megaliters":UnitVolume.megaliters,
+        "metricCups":UnitVolume.metricCups,
+        "milliliters":UnitVolume.milliliters,
+        "pints":UnitVolume.pints,
+        "quarts":UnitVolume.quarts,
+        "tablespoons":UnitVolume.tablespoons,
+        "teaspoons":UnitVolume.teaspoons,
+    ]
+
+    #endif
 }
