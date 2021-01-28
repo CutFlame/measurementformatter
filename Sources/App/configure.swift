@@ -2,24 +2,16 @@ import Leaf
 import Vapor
 
 /// Called before your application initializes.
-public func configure(_ config: inout Config, _ env: inout Environment, _ services: inout Services) throws {
-    // Register providers first
-    try services.register(LeafProvider())
+public func configure(_ app: Application) throws {
 
-    // Register routes to the router
-    let router = EngineRouter.default()
-    try routes(router)
-    services.register(router, as: Router.self)
+    app.middleware.use(EnforceSSLMiddleware())
+    app.middleware.use(FileMiddleware(publicDirectory: app.directory.publicDirectory))
+    app.middleware.use(ErrorMiddleware.default(environment: app.environment))
 
-    services.register(EnforceSSLMiddleware.self)
-
-    // Use Leaf for rendering views
-    config.prefer(LeafRenderer.self, for: ViewRenderer.self)
-
-    // Register middleware
-    var middlewares = MiddlewareConfig() // Create _empty_ middleware config
-    middlewares.use(EnforceSSLMiddleware.self)
-    middlewares.use(FileMiddleware.self) // Serves files from `Public/` directory
-    middlewares.use(ErrorMiddleware.self) // Catches errors and converts to HTTP response
-    services.register(middlewares)
+    
+    app.views.use(.leaf)
+    app.leaf.cache.isEnabled = false    
+    
+    // register routes
+    try routes(app)
 }

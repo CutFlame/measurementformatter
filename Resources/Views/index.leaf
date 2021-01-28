@@ -1,4 +1,5 @@
-#set("content") {
+#extend("base"):
+#export("content"):
   <section class="try panel">
     <form>
       <div class="try__row">
@@ -11,13 +12,13 @@
         <div class="field">
           <label>Dimension</label>
           <select name="dimension" id="dimension">
-            #for(dimension in dimensions) {
+            #for(dimension in dimensions):
                 <optgroup label="#(dimension.identifier)">
-#for(unit in dimension.units) {
+                    #for(unit in dimension.units):
                     <option value="#(dimension.identifier).#(unit.identifier)">#(unit.identifier)</option>
-}
+                    #endfor
                 </optgroup>
-            }
+            #endfor
           </select>
         </div>
 
@@ -32,18 +33,18 @@
         <div class="field field--small">
             <label>UnitStyle</label>
             <select name="unitStyle" id="unitStyle">
-#for(unitStyle in unitStyles) {
+                #for(unitStyle in unitStyles):
                 <option value="#(unitStyle)">#(unitStyle)</option>
-}
+                #endfor
             </select>
         </div>
 
         <div class="field field--small">
           <label>Locale</label>
           <select name="locale" id="locale">
-            #for(locale in locales) {
-              <option #if(locale.isDefault) { selected } value="#(locale.identifier)">#(locale.identifier)</option>
-            }
+            #for(locale in locales):
+              <option #if(locale.isDefault): selected #endif value="#(locale.identifier)">#(locale.identifier)</option>
+            #endfor
           </select>
         </div>
       </div>
@@ -56,9 +57,9 @@
   </section>
 
   <ul class="nav">
-    <li><a href="#example" class="active" data-target=".example">Code</a></li>
-    <li><a href="#reference" class="" data-target=".reference">Reference</a></li>
-    <li><a href="#about" class="" data-target=".about">About</a></li>
+    <li><a href="#raw("#example")" class="active" data-target=".example">Code</a></li>
+    <li><a href="#raw("#reference")" class="" data-target=".reference">Reference</a></li>
+    <li><a href="#raw("#about")" class="" data-target=".about">About</a></li>
   </ul>
 
   <section class="info panel">
@@ -68,12 +69,11 @@
 </code></pre>
 </div> <!-- example -->
 
-    #embed("reference")
+    #extend("reference")
 
-    #embed("about")
+    #extend("about")
 
   </section>
 
-}
-
-#embed("base")
+#endexport
+#endextend

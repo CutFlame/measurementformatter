@@ -1,18 +1,21 @@
 
-# Created by https://www.gitignore.io/api/vapor
+# Created by https://www.toptal.com/developers/gitignore/api/vapor
+# Edit at https://www.toptal.com/developers/gitignore?templates=vapor
 
 ### Vapor ###
 Config/secrets
 
 ### Vapor Patch ###
 Packages
-.build
+.build/
 xcuserdata
-*.xcodeproj
 DerivedData/
+*.xcodeproj
+
+
+# End of https://www.toptal.com/developers/gitignore/api/vapor
+
 .DS_Store
-
-# End of https://www.gitignore.io/api/vapor
-
 derivedData
 .sass-cache
+.swiftpm

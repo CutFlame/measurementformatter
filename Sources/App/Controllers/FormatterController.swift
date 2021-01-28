@@ -10,14 +10,14 @@ class FormatterController {
         let unitStyles: [String]
     }
 
-    func index(_ req: Request) throws -> Future<View> {
+    func index(_ req: Request) -> EventLoopFuture<View> {
         let context = ViewData(
             locales: Database.shared.locales,
             dimensions: Database.shared.dimensionsReference,
             unitOptions: Array(Database.shared.unitOptionsIdentifiers.keys),
             unitStyles: Array(Database.shared.unitStyleIdentifiers.keys)
         )
-        return try req.view().render("index", context)
+        return req.view.render("index", context)
     }
 
     private var defaultUnitOptionsIdentifier: String {
@@ -34,11 +34,11 @@ class FormatterController {
     }
 
     func format(_ req: Request) throws -> FormatResult {
-        let value: Double? = try? req.content.syncGet(at: "value")
-        let dimensionIdentifier: String = try req.content.syncGet(at: "dimension")
-        let unitOptionsIdentifier: String = (try? req.content.syncGet(at: "unitOptions")) ?? defaultUnitOptionsIdentifier
-        let unitStyleIdentifier: String = (try? req.content.syncGet(at: "unitStyle")) ?? defaultUnitStyleIdentifier
-        let localeIdentifier: String = (try? req.content.syncGet(at: "locale")) ?? Database.shared.defaultLocaleIdentifier
+        let value: Double? = try? req.content.get(at: "value")
+        let dimensionIdentifier: String = try req.content.get(at: "dimension")
+        let unitOptionsIdentifier: String = (try? req.content.get(at: "unitOptions")) ?? defaultUnitOptionsIdentifier
+        let unitStyleIdentifier: String = (try? req.content.get(at: "unitStyle")) ?? defaultUnitStyleIdentifier
+        let localeIdentifier: String = (try? req.content.get(at: "locale")) ?? Database.shared.defaultLocaleIdentifier
 
         guard let unitOptions = Database.shared.unitOptionsIdentifiers[unitOptionsIdentifier] else {
             throw Abort(.badRequest, headers: [:], reason: "Invalid unitOptions parameter", identifier: nil, suggestedFixes: [])

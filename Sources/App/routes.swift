@@ -1,8 +1,8 @@
 import Vapor
 
 /// Register your application's routes here.
-public func routes(_ router: Router) throws {
+public func routes(_ app: Application) throws {
     let formatterController = FormatterController()
-    router.get(use: formatterController.index)
-    router.post("format", use: formatterController.format)
+    app.get(use: formatterController.index)
+    app.post("format", use: formatterController.format)
 }

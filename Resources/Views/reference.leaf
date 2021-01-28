@@ -9,19 +9,19 @@
             <th>Formatted Medium</th>
             <th>Formatted Long</th>
         </tr>
-#for(dimension in dimensions) {
+#for(dimension in dimensions):
         <tr class="separator">
             <td colspan="4">#(dimension.identifier) - <i>BaseUnit: #(dimension.baseUnit)</i></td>
         </tr>
-    #for(unit in dimension.units) {
+    #for(unit in dimension.units):
         <tr>
             <td><code>.#(unit.identifier)</code></td>
             <td>#(unit.shortFormat)</td>
             <td>#(unit.mediumFormat)</td>
             <td>#(unit.longFormat)</td>
         </tr>
-    }
-}
+    #endfor
+#endfor
         <tfoot>
             <tr>
                 <td colspan="4">
